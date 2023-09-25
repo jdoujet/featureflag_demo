@@ -10,13 +10,59 @@ const client = new KameleoonClient(siteCode);
 async function init() {
     try {
       await client.initialize();
-      const title = client.getFeatureFlagVariable({
+      
+      const numberCards = client.getFeatureFlagVariable({
         visitorCode,
         featureKey,
-        variableKey: "title_page",
+        variableKey: "number_cards",
       }).value
-      //const titleDiv = document.createElement("div");
-      document.querySelector('#app').insertAdjacentHTML("beforeend","<div>"+title+"</div>")
+
+      const cardWidth = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "card_width",
+      }).value
+
+      const cardColor = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "card_color",
+      }).value
+
+      const colorCardWording = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "color_card_wording",
+      }).value
+
+      const colorButtonCardWording = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "color_button_card_wording",
+      }).value
+
+      const mainTitleCard = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "main_title_card",
+      }).value
+
+      const descriptionCard = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "description_card",
+      }).value
+
+      const buttonCardContent = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "button_card_content",
+      }).value
+
+      for(let i=0; i<numberCards; i++){
+        createCardBlock(cardWidth, cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent)
+      }
+
     } catch (err) {
       switch (err.type) {
         case KameleoonException.StorageWrite:
