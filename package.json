@@ -12,6 +12,11 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "@kameleoon/javascript-sdk": "^1.7.3"
-  }
+    "@kameleoon/javascript-sdk": "^1.7.3",
+    "yarn": "^1.22.19"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/jdoujet/featureflag_demo.git",
+  "author": "<jdoujet@gmail.com>",
+  "license": "MIT"
 }
