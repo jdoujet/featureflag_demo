@@ -1,4 +1,4 @@
-function createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent) {
+export function createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent) {
 
     // Create a div element with class "card" and set its width and backgroundColor
     const cardDiv = document.createElement("div");
