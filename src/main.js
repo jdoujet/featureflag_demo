@@ -54,6 +54,7 @@ async function init() {
       }).value
 
       for(let i=0; i<numberCards; i++){
+        console.log('getFFVAlue')
         createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent)
       }
 

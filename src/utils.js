@@ -31,6 +31,7 @@ function createCardBlock(cardColor, colorCardWording, colorButtonCardWording, ma
 
     // Append the cardDiv to a container in your HTML (e.g., a div with an id)
     const container = document.getElementById("container"); // Replace "container" with your actual container ID
+    console.log('createCardBlock')
     container.appendChild(cardDiv);
 
 }
