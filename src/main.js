@@ -1,6 +1,7 @@
 //import { KameleoonClient } from '../node_modules/@kameleoon/javascript-sdk/dist/index.js';
 const { KameleoonClient, KameleoonException , CustomData, KameleoonUtils } = KameleoonSDK;
 import { featureKey, siteCode, visitorCode } from "./constants.js";
+import { createCardBlock } from "./utils.js";
 
 console.log('test')
 
