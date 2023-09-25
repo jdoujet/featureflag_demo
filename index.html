@@ -1,13 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Feature Flag Demo</title>
+    <link rel="icon" href="images/logo_kameleoon.png">
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <div id="app">
+        <header>
+            <div id="nav-bar">
+                <div id="nav-bar-logo">
+                    <img src="images/logo_kameleoon_wording.png" width="195" height="65">
+                </div>
+                <div id="nav-bar-sections">
+                    <ul>
+                        <li>About us</li>
+                        <li>Features</li>
+                        <li>Pricing</li>
+                        <li>Resources</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </header>
+
+        <div id="container-introduction">
+            <div class="introduction-title">
+                <div class="introduction-title-main">What are Feature Flags?
+                </div>
+                <div class="introduction-title-sub">Everything you need to know
+                </div>
+                <button class="introduction-title-learn-more">LEARN MORE
+                </button>
+            </div>
+            <img src="https://www.kameleoon.com/sites/default/files/2023-02/Pillar%20Page%20Header%20Illustration_0.svg" width="430" height="350">
+        </div>
+
+        <div id="container">
+            <div class="card">
+                <div class="card-main-title">FEATURE FLAG
+                </div>
+                <div class="card-description">Kameleoon is the only optimization solution with web, full stack, and feature experimentation capabilities in a single unified platform. This means marketing and product teams can work in one platform, in their preferred environment.
+                </div>
+                <div class="card-btn-learn-more" >LEARN MORE
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-main-title">FEATURE FLAG
+                </div>
+                <div class="card-description">Kameleoon is the only optimization solution with web, full stack, and feature experimentation capabilities in a single unified platform. This means marketing and product teams can work in one platform, in their preferred environment.
+                </div>
+                <div class="card-btn-learn-more" >LEARN MORE
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-main-title">FEATURE FLAG
+                </div>
+                <div class="card-description">Kameleoon is the only optimization solution with web, full stack, and feature experimentation capabilities in a single unified platform. This means marketing and product teams can work in one platform, in their preferred environment.
+                </div>
+                <div class="card-btn-learn-more" >LEARN MORE
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>
