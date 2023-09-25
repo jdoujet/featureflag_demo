@@ -1,4 +1,4 @@
-import { KameleoonClient } from '@kameleoon/javascript-sdk';
+import { KameleoonClient } from '../node_modules/@kameleoon/javascript-sdk/dist/index';
 import { featureKey, siteCode, visitorCode } from "./constants.js";
 
 console.log('test')
