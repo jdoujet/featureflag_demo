@@ -1,9 +1,9 @@
-function createCardBlock(cardWidth, cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent) {
+function createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent) {
 
     // Create a div element with class "card" and set its width and backgroundColor
     const cardDiv = document.createElement("div");
     cardDiv.className = "card";
-    cardDiv.style.width = cardWidth+"px";
+    //cardDiv.style.width = cardWidth+"px";
     cardDiv.style.backgroundColor = cardColor
 
     // Create a div element with class "card-main-title" and set its text content

@@ -17,12 +17,6 @@ async function init() {
         variableKey: "number_cards",
       }).value
 
-      const cardWidth = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "card_width",
-      }).value
-
       const cardColor = client.getFeatureFlagVariable({
         visitorCode,
         featureKey,
@@ -60,7 +54,7 @@ async function init() {
       }).value
 
       for(let i=0; i<numberCards; i++){
-        createCardBlock(cardWidth, cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent)
+        createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent)
       }
 
     } catch (err) {
