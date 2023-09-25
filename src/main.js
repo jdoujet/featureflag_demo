@@ -1,7 +1,7 @@
 //import { KameleoonClient } from '../node_modules/@kameleoon/javascript-sdk/dist/index.js';
 const { KameleoonClient, KameleoonException , CustomData, KameleoonUtils } = KameleoonSDK;
 import { featureKey, siteCode, visitorCode } from "./constants.js";
-import { createCardBlock } from "./utils.js";
+import { createIntroductionContent, createCardBlock } from "./utils.js";
 
 console.log('test')
 
@@ -11,6 +11,12 @@ const client = new KameleoonClient(siteCode);
 async function init() {
     try {
       await client.initialize();
+      
+      const swapIntroductionContent = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "swap_introduction_content",
+      }).value
       
       const numberCards = client.getFeatureFlagVariable({
         visitorCode,
@@ -54,8 +60,9 @@ async function init() {
         variableKey: "button_card_content",
       }).value
 
+      createIntroductionContent(swapIntroductionContent)
+
       for(let i=0; i<numberCards; i++){
-        console.log('getFFVAlue')
         createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent)
       }
 
