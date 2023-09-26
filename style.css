@@ -113,6 +113,10 @@ header{
     padding: 10px 20px;
 }
 
+#container-performances{
+    margin-bottom: 100px;
+}
+
 #container-performances .performances-titles{
     display: flex;
     justify-content: center;
