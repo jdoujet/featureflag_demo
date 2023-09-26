@@ -93,10 +93,11 @@ export function createPerformancesTitle(jsonContainerPerformancesContent){
 
 export function createPerformancesBlock(jsonContainerPerformancesContent){
 
+    // Create the performances list container div
+    const performancesListDiv = document.createElement("div");
+    performancesListDiv.className = "performances-list";
+    
     jsonContainerPerformancesContent.data_performances_blocks.forEach((ele) => { 
-        // Create the performances list container div
-        const performancesListDiv = document.createElement("div");
-        performancesListDiv.className = "performances-list";
 
         // Create the performances list flex column div
         const performancesListFlexColumnDiv = document.createElement("div");
