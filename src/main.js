@@ -1,7 +1,7 @@
 //import { KameleoonClient } from '../node_modules/@kameleoon/javascript-sdk/dist/index.js';
 const { KameleoonClient, KameleoonException , CustomData, KameleoonUtils } = KameleoonSDK;
 import { featureKey, siteCode, visitorCode } from "./constants.js";
-import { createIntroductionContent, createCardBlock } from "./utils.js";
+import { createIntroductionContent, createCardBlock, createPerformancesTitle, createPerformancesBlock} from "./utils.js";
 
 console.log('test')
 
@@ -60,11 +60,20 @@ async function init() {
         variableKey: "button_card_content",
       }).value
 
+      const jsonContainerPerformancesContent = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "container_performances_content",
+      }).value
+
       createIntroductionContent(swapIntroductionContent)
 
       for(let i=0; i<numberCards; i++){
         createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent)
       }
+
+      createPerformancesTitle(jsonContainerPerformancesContent)
+      createPerformancesBlock(jsonContainerPerformancesContent)
 
     } catch (err) {
       switch (err.type) {

@@ -79,3 +79,53 @@ export function createCardBlock(cardColor, colorCardWording, colorButtonCardWord
     container.appendChild(cardDiv);
 
 }
+
+export function createPerformancesTitle(jsonContainerPerformancesContent){
+    
+    // Create the main container div
+    const performancesTitlesDiv = document.createElement("div");
+    performancesTitlesDiv.className = "performances-titles";
+    performancesTitlesDiv.innerHTML = jsonContainerPerformancesContent.data_performances_title.title;
+
+    // Append the main container to the div container-performances
+    document.getElementById('container-performances').insertAdjacentElement('afterbegin',performancesTitlesDiv);
+}
+
+export function createPerformancesBlock(jsonContainerPerformancesContent){
+
+    jsonContainerPerformancesContent.data_performances_blocks.forEach((ele) => { 
+        // Create the performances list container div
+        const performancesListDiv = document.createElement("div");
+        performancesListDiv.className = "performances-list";
+
+        // Create the performances list flex column div
+        const performancesListFlexColumnDiv = document.createElement("div");
+        performancesListFlexColumnDiv.className = "performances-list-flex-column";
+
+        // Create the image element
+        const imgElement = document.createElement("img");
+        imgElement.src = ele.img_src;
+        imgElement.width = "81";
+        imgElement.height = "80";
+
+        // Create the title div
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "performances-list-title";
+        titleDiv.textContent = ele.title;
+
+        // Create the description div
+        const descriptionDiv = document.createElement("div");
+        descriptionDiv.className = "performances-list-description";
+        descriptionDiv.textContent = ele.description;
+
+        // Append elements to their respective parent containers
+        performancesListFlexColumnDiv.appendChild(imgElement);
+        performancesListFlexColumnDiv.appendChild(titleDiv);
+        performancesListFlexColumnDiv.appendChild(descriptionDiv);
+        performancesListDiv.appendChild(performancesListFlexColumnDiv);
+
+        // Append the main container to the div container-performances
+        document.getElementById('container-performances').appendChild(performancesListDiv);
+    })
+
+}

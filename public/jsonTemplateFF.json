@@ -1,0 +1,22 @@
+{
+    "data_performances_title": {
+        "title": "Deliver more value faster,<br>without sacrificing security and data validity"
+    },
+    "data_performances_blocks": [
+        {
+            "img_src":"https://www.kameleoon.com/sites/default/files/2023-04/Release_Incrementally_Icon.svg",
+            "title":"RELEASE INCREMENTALLY",
+            "description":"Test before committing to large efforts and see how your users are adopting updates to your product."
+        },
+        {
+            "img_src":"https://www.kameleoon.com/sites/default/files/2023-04/Clock_Icon.svg",
+            "title":"MONITOR IN REAL TIME",
+            "description":"Roll back features or disable tests the moment you observe they are negatively impacting product performance or your user’s journey."
+        },
+        {
+            "img_src":"https://www.kameleoon.com/sites/default/files/2023-04/Award_Stamp_Icon.svg",
+            "title":"TRUST YOUR DATA",
+            "description":"With Kameleoon’s decade-long experience in experimentation, you can rest assured your feature experiments will yield trustworthy results."
+        }
+    ]
+}
