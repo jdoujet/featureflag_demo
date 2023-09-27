@@ -142,6 +142,7 @@ header{
 }
 
 #container-performances .performances-list-flex-column img{
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -161,4 +162,5 @@ header{
     font-family: "Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     text-align: center;
     line-height: 1.69;
+    margin-bottom: 50px;
 }
