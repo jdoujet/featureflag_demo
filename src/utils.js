@@ -102,6 +102,7 @@ export function createPerformancesBlock(jsonContainerPerformancesContent){
         // Create the performances list flex column div
         const performancesListFlexColumnDiv = document.createElement("div");
         performancesListFlexColumnDiv.className = "performances-list-flex-column";
+        performancesListFlexColumnDiv.style.backgroundColor = background_color
 
         // Create the image element
         const imgElement = document.createElement("img");
