@@ -193,7 +193,7 @@ function createCarouselSlide(slideNumber, imageSrc, altText, titleText, subtitle
       // Auto-advance the slides (optional)
       setInterval(() => {
           changeSlideSplit(1);
-      }, 4000); // Change slides every 4 seconds *
+      }, 5000); // Change slides every 5 seconds *
   }
   }
 
