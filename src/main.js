@@ -1,11 +1,11 @@
 //import { KameleoonClient } from '../node_modules/@kameleoon/javascript-sdk/dist/index.js';
 const { KameleoonClient, KameleoonException , CustomData, KameleoonUtils } = KameleoonSDK;
 import { featureKey, siteCode, visitorCode } from "./constants.js";
-import { createIntroductionContent, createCardBlock, createPerformancesTitle, createPerformancesBlock} from "./utils.js";
+import { createIntroductionContent, createBanner, createCardBlock, createPerformancesTitle, createPerformancesBlock} from "./utils.js";
 import { generateCarouselExtendedVersion, getIndicatorsActiveColor, getIndicatorsInactiveColor, getAutomaticSlideshow } from "./carouselExtendedVersion.js";
 import { generateCarouselSplitVersion, getIndicatorsActiveColorSplitVersion, getIndicatorsInactiveColorSplitVersion, getAutomaticSlideshowSplitVersion } from "./carouselSplitVersion.js";
 
-console.log('test')
+console.log('Feature Flag Demo')
 
 const client = new KameleoonClient(siteCode);
 
@@ -13,63 +13,16 @@ const client = new KameleoonClient(siteCode);
 async function init() {
     try {
       await client.initialize();
-      /*
-      const swapIntroductionContent = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "swap_introduction_content",
-      }).value
       
-      const numberCards = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "number_cards",
-      }).value
-
-      const cardColor = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "card_color",
-      }).value
-
-      const colorCardWording = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "color_card_wording",
-      }).value
-
-      const colorButtonCardWording = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "color_button_card_wording",
-      }).value
-
-      const mainTitleCard = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "main_title_card",
-      }).value
-
-      const descriptionCard = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "description_card",
-      }).value
-
-      const buttonCardContent = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "button_card_content",
-      }).value
-
-      const jsonContainerPerformancesContent = client.getFeatureFlagVariable({
-        visitorCode,
-        featureKey,
-        variableKey: "container_performances_content",
-      }).value
-      */
+      //All feature flag variables
       const variableKeys = [
         "swap_introduction_content",
+        "banner_height",
+        "banner_color",
+        "banner_title_text",
+        "banner_title_color",
+        "banner_subtitle_text",
+        "banner_subtitle_color",
         "number_cards",
         "card_color",
         "color_card_wording",
@@ -118,6 +71,7 @@ async function init() {
 
       const containerVariablesValues = {};
       
+      //get the value associated with each feature flag variable
       for (const variableKey of variableKeys) {
         containerVariablesValues[variableKey] = client.getFeatureFlagVariable({
           visitorCode,
@@ -126,7 +80,18 @@ async function init() {
         }).value;
       }
       console.log(containerVariablesValues)
+
+      //create the content on the page (block, banner, etc...) based on the variable values
       createIntroductionContent(containerVariablesValues["swap_introduction_content"])
+
+      createBanner(
+        containerVariablesValues["banner_height"],
+        containerVariablesValues["banner_color"],
+        containerVariablesValues["banner_title_text"],
+        containerVariablesValues["banner_title_color"],
+        containerVariablesValues["banner_subtitle_text"],
+        containerVariablesValues["banner_subtitle_color"]
+      )
 
       for(let i=0; i<containerVariablesValues["number_cards"]; i++){
         createCardBlock(
@@ -217,3 +182,67 @@ async function init() {
   }
   
   init();
+
+
+
+
+
+
+
+
+
+        /*
+      const swapIntroductionContent = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "swap_introduction_content",
+      }).value
+      
+      const numberCards = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "number_cards",
+      }).value
+
+      const cardColor = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "card_color",
+      }).value
+
+      const colorCardWording = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "color_card_wording",
+      }).value
+
+      const colorButtonCardWording = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "color_button_card_wording",
+      }).value
+
+      const mainTitleCard = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "main_title_card",
+      }).value
+
+      const descriptionCard = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "description_card",
+      }).value
+
+      const buttonCardContent = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "button_card_content",
+      }).value
+
+      const jsonContainerPerformancesContent = client.getFeatureFlagVariable({
+        visitorCode,
+        featureKey,
+        variableKey: "container_performances_content",
+      }).value
+      */

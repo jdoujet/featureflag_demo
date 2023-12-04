@@ -43,6 +43,29 @@ export function createIntroductionContent(swapIntroductionContent){
 
 }
 
+export function createBanner(bannerHeight, bannerColor, bannerTitleText, bannerTitleColor, bannerSubTitleText, bannerSubTitleColor){
+    
+    const container = document.getElementById("container-banner");
+    container.style.backgroundColor=bannerColor;
+    container.style.height=bannerHeight+"px";
+    // Create title div
+     const titleDiv = document.createElement("div");
+     titleDiv.id = "container-banner-text";
+     titleDiv.style.color = bannerTitleColor;
+     titleDiv.innerText = bannerTitleText;
+ 
+     // Create subtext div
+     const subtextDiv = document.createElement("div");
+     subtextDiv.id = "container-banner-subtext";
+     subtextDiv.style.color = bannerSubTitleColor;
+     subtextDiv.innerText = bannerSubTitleText;
+
+    
+    // Append title and subtext divs to container div
+    container.appendChild(titleDiv);
+    container.appendChild(subtextDiv);
+}
+
 export function createCardBlock(cardColor, colorCardWording, colorButtonCardWording, mainTitleCard, descriptionCard, buttonCardContent) {
 
     // Create a div element with class "card" and set its width and backgroundColor
