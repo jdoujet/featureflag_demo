@@ -63,6 +63,7 @@ header{
 #container-introduction .introduction-title-learn-more{
     color: white !important;
     font-size: 15px;
+    cursor: pointer;
     background-color: #7f84ff;
     border: solid 1px currentColor;
     border-radius: 4px;
@@ -107,6 +108,7 @@ header{
 
 #container .card-btn-learn-more{
     /*color: #7f84ff;*/
+    cursor: pointer;
     border: solid 1px currentColor;
     border-radius: 4px;
     font-family: "Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
