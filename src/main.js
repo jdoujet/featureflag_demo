@@ -1,6 +1,6 @@
 //import { KameleoonClient } from '../node_modules/@kameleoon/javascript-sdk/dist/index.js';
 const { KameleoonClient, KameleoonException , CustomData, KameleoonUtils } = KameleoonSDK;
-import { featureKey, siteCode, visitorCode } from "./constants.js";
+import { featureKeys, siteCode, visitorCode } from "./constants.js";
 import { createIntroductionContent, createBanner, createCardBlock, createPerformancesTitle, createPerformancesBlock} from "./utils.js";
 import { generateCarouselExtendedVersion, getIndicatorsActiveColor, getIndicatorsInactiveColor, getAutomaticSlideshow } from "./carouselExtendedVersion.js";
 import { generateCarouselSplitVersion, getIndicatorsActiveColorSplitVersion, getIndicatorsInactiveColorSplitVersion, getAutomaticSlideshowSplitVersion } from "./carouselSplitVersion.js";
@@ -92,9 +92,9 @@ async function init() {
         console.log(containerVariablesValues)
       }
 
-      loadVariableKeys(containerVariablesValuesCarousel, variableKeysCarousel, featureKey[0])
-      loadVariableKeys(containerVariablesValuesBlocks, variableKeysBlocks, featureKey[1])
-      loadVariableKeys(containerVariablesValuesBanner, variableKeysBanner, featureKey[2])
+      loadVariableKeys(containerVariablesValuesCarousel, variableKeysCarousel, featureKeys[0])
+      loadVariableKeys(containerVariablesValuesBlocks, variableKeysBlocks, featureKeys[1])
+      loadVariableKeys(containerVariablesValuesBanner, variableKeysBanner, featureKeys[2])
       
       //create the content on the page (block, banner, etc...) based on the variable values
       createIntroductionContent(containerVariablesValuesBlocks["swap_introduction_content"])
