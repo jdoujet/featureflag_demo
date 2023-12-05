@@ -9,20 +9,13 @@ console.log('Feature Flag Demo')
 
 const client = new KameleoonClient(siteCode);
 
-
 async function init() {
     try {
       await client.initialize();
       
-      //All feature flag variables
-      const variableKeys = [
+      //All feature flag variables for blocks elements
+      const variableKeysBlocks = [
         "swap_introduction_content",
-        "banner_height",
-        "banner_color",
-        "banner_title_text",
-        "banner_title_color",
-        "banner_subtitle_text",
-        "banner_subtitle_color",
         "number_cards",
         "card_color",
         "color_card_wording",
@@ -31,6 +24,20 @@ async function init() {
         "description_card",
         "button_card_content",
         "container_performances_content",
+      ];
+
+      //All feature flag variables for banner elements
+      const variableKeysBanner = [
+        "banner_height",
+        "banner_color",
+        "banner_title_text",
+        "banner_title_color",
+        "banner_subtitle_text",
+        "banner_subtitle_color"
+      ];
+
+      //All feature flag variables for carousel elements
+      const variableKeysCarousel = [
         "display_carousel",
         "display_carousel_split_version",
         "carousel_extended_version_img_1",
@@ -69,101 +76,109 @@ async function init() {
       ];
 
 
-      const containerVariablesValues = {};
-      
-      //get the value associated with each feature flag variable
-      for (const variableKey of variableKeys) {
-        containerVariablesValues[variableKey] = client.getFeatureFlagVariable({
-          visitorCode,
-          featureKey,
-          variableKey,
-        }).value;
-      }
-      console.log(containerVariablesValues)
+      const containerVariablesValuesBlocks = {};
+      const containerVariablesValuesBanner = {};
+      const containerVariablesValuesCarousel = {};
 
+      //get the value associated with each feature flag variable
+      function loadVariableKeys(containerVariablesValues, variableKeys, featureKey){
+        for (const variableKey of variableKeys) {
+          containerVariablesValues[variableKey] = client.getFeatureFlagVariable({
+            visitorCode,
+            featureKey,
+            variableKey,
+          }).value;
+        }
+        console.log(containerVariablesValues)
+      }
+
+      loadVariableKeys(containerVariablesValuesCarousel, variableKeysCarousel, featureKey[0])
+      loadVariableKeys(containerVariablesValuesBlocks, variableKeysBlocks, featureKey[1])
+      loadVariableKeys(containerVariablesValuesBanner, variableKeysBanner, featureKey[2])
+      
       //create the content on the page (block, banner, etc...) based on the variable values
-      createIntroductionContent(containerVariablesValues["swap_introduction_content"])
+      createIntroductionContent(containerVariablesValuesBlocks["swap_introduction_content"])
 
       createBanner(
-        containerVariablesValues["banner_height"],
-        containerVariablesValues["banner_color"],
-        containerVariablesValues["banner_title_text"],
-        containerVariablesValues["banner_title_color"],
-        containerVariablesValues["banner_subtitle_text"],
-        containerVariablesValues["banner_subtitle_color"]
+        containerVariablesValuesBanner["banner_height"],
+        containerVariablesValuesBanner["banner_color"],
+        containerVariablesValuesBanner["banner_title_text"],
+        containerVariablesValuesBanner["banner_title_color"],
+        containerVariablesValuesBanner["banner_subtitle_text"],
+        containerVariablesValuesBanner["banner_subtitle_color"]
       )
 
-      for(let i=0; i<containerVariablesValues["number_cards"]; i++){
+      for(let i=0; i<containerVariablesValuesBlocks["number_cards"]; i++){
         createCardBlock(
-          containerVariablesValues["card_color"],
-          containerVariablesValues["color_card_wording"],
-          containerVariablesValues["color_button_card_wording"],
-          containerVariablesValues["main_title_card"],
-          containerVariablesValues["description_card"],
-          containerVariablesValues["button_card_content"])
+          containerVariablesValuesBlocks["card_color"],
+          containerVariablesValuesBlocks["color_card_wording"],
+          containerVariablesValuesBlocks["color_button_card_wording"],
+          containerVariablesValuesBlocks["main_title_card"],
+          containerVariablesValuesBlocks["description_card"],
+          containerVariablesValuesBlocks["button_card_content"])
       }
 
-      createPerformancesTitle(containerVariablesValues["container_performances_content"])
-      createPerformancesBlock(containerVariablesValues["container_performances_content"])
+      createPerformancesTitle(containerVariablesValuesBlocks["container_performances_content"])
+      createPerformancesBlock(containerVariablesValuesBlocks["container_performances_content"])
 
-      if(containerVariablesValues["display_carousel"]){
-        if(containerVariablesValues["display_carousel_split_version"]){
-          getIndicatorsActiveColorSplitVersion( containerVariablesValues["carousel_indicators_active_color"]);
-          getIndicatorsInactiveColorSplitVersion(containerVariablesValues["carousel_indicators_inactive_color"]);
-          getAutomaticSlideshowSplitVersion(containerVariablesValues["carousel_automatic_slideshow"])
+      if(containerVariablesValuesCarousel["display_carousel"]){
+        if(containerVariablesValuesCarousel["display_carousel_split_version"]){
+          getIndicatorsActiveColorSplitVersion( containerVariablesValuesCarousel["carousel_indicators_active_color"]);
+          getIndicatorsInactiveColorSplitVersion(containerVariablesValuesCarousel["carousel_indicators_inactive_color"]);
+          getAutomaticSlideshowSplitVersion(containerVariablesValuesCarousel["carousel_automatic_slideshow"])
           generateCarouselSplitVersion(
-            containerVariablesValues["carousel_split_version_img_1"],
-            containerVariablesValues["carousel_split_version_img_2"],
-            containerVariablesValues["carousel_split_version_img_3"],
-            containerVariablesValues["carousel_split_version_background_color_titles_1"],
-            containerVariablesValues["carousel_split_version_background_color_titles_2"],
-            containerVariablesValues["carousel_split_version_background_color_titles_3"],
-            containerVariablesValues["carousel_main_title_wording_1"],
-            containerVariablesValues["carousel_main_title_wording_2"],
-            containerVariablesValues["carousel_main_title_wording_3"],
-            containerVariablesValues["carousel_main_subtitle_wording_1"],
-            containerVariablesValues["carousel_main_subtitle_wording_2"],
-            containerVariablesValues["carousel_main_subtitle_wording_3"],
-            containerVariablesValues["carousel_button_wording_1"],
-            containerVariablesValues["carousel_button_wording_2"],
-            containerVariablesValues["carousel_button_wording_3"],
-            containerVariablesValues["carousel_button_color_1"],
-            containerVariablesValues["carousel_button_color_2"],
-            containerVariablesValues["carousel_button_color_3"],
-            containerVariablesValues["carousel_button_wording_color_1"],
-            containerVariablesValues["carousel_button_wording_color_2"],
-            containerVariablesValues["carousel_button_wording_color_3"],
-            containerVariablesValues["carousel_arrows_color"],
-            containerVariablesValues["display_carousel_circle_shape_indicators"],
-            containerVariablesValues["display_carousel_fade_transition"]
+            containerVariablesValuesCarousel["carousel_split_version_img_1"],
+            containerVariablesValuesCarousel["carousel_split_version_img_2"],
+            containerVariablesValuesCarousel["carousel_split_version_img_3"],
+            containerVariablesValuesCarousel["carousel_split_version_background_color_titles_1"],
+            containerVariablesValuesCarousel["carousel_split_version_background_color_titles_2"],
+            containerVariablesValuesCarousel["carousel_split_version_background_color_titles_3"],
+            containerVariablesValuesCarousel["carousel_main_title_wording_1"],
+            containerVariablesValuesCarousel["carousel_main_title_wording_2"],
+            containerVariablesValuesCarousel["carousel_main_title_wording_3"],
+            containerVariablesValuesCarousel["carousel_main_subtitle_wording_1"],
+            containerVariablesValuesCarousel["carousel_main_subtitle_wording_2"],
+            containerVariablesValuesCarousel["carousel_main_subtitle_wording_3"],
+            containerVariablesValuesCarousel["carousel_button_wording_1"],
+            containerVariablesValuesCarousel["carousel_button_wording_2"],
+            containerVariablesValuesCarousel["carousel_button_wording_3"],
+            containerVariablesValuesCarousel["carousel_button_color_1"],
+            containerVariablesValuesCarousel["carousel_button_color_2"],
+            containerVariablesValuesCarousel["carousel_button_color_3"],
+            containerVariablesValuesCarousel["carousel_button_wording_color_1"],
+            containerVariablesValuesCarousel["carousel_button_wording_color_2"],
+            containerVariablesValuesCarousel["carousel_button_wording_color_3"],
+            containerVariablesValuesCarousel["carousel_arrows_color"],
+            containerVariablesValuesCarousel["display_carousel_circle_shape_indicators"],
+            containerVariablesValuesCarousel["display_carousel_fade_transition"]
           );
         }
         else{
-          getIndicatorsActiveColor( containerVariablesValues["carousel_indicators_active_color"]);
-          getIndicatorsInactiveColor(containerVariablesValues["carousel_indicators_inactive_color"]);
-          getAutomaticSlideshow(containerVariablesValues["carousel_automatic_slideshow"])
+          getIndicatorsActiveColor( containerVariablesValuesCarousel["carousel_indicators_active_color"]);
+          getIndicatorsInactiveColor(containerVariablesValuesCarousel["carousel_indicators_inactive_color"]);
+          getAutomaticSlideshow(containerVariablesValuesCarousel["carousel_automatic_slideshow"])
           generateCarouselExtendedVersion(
-            containerVariablesValues["carousel_extended_version_img_1"],
-            containerVariablesValues["carousel_extended_version_img_2"],
-            containerVariablesValues["carousel_extended_version_img_3"],
-            containerVariablesValues["carousel_main_title_wording_1"],
-            containerVariablesValues["carousel_main_title_wording_2"],
-            containerVariablesValues["carousel_main_title_wording_3"],
-            containerVariablesValues["carousel_main_subtitle_wording_1"],
-            containerVariablesValues["carousel_main_subtitle_wording_2"],
-            containerVariablesValues["carousel_main_subtitle_wording_3"],
-            containerVariablesValues["carousel_button_wording_1"],
-            containerVariablesValues["carousel_button_wording_2"],
-            containerVariablesValues["carousel_button_wording_3"],
-            containerVariablesValues["carousel_button_color_1"],
-            containerVariablesValues["carousel_button_color_2"],
-            containerVariablesValues["carousel_button_color_3"],
-            containerVariablesValues["carousel_button_wording_color_1"],
-            containerVariablesValues["carousel_button_wording_color_2"],
-            containerVariablesValues["carousel_button_wording_color_3"],
-            containerVariablesValues["carousel_arrows_color"],
-            containerVariablesValues["display_carousel_circle_shape_indicators"],
-            containerVariablesValues["display_carousel_fade_transition"]
+            containerVariablesValuesCarousel["carousel_extended_version_img_1"],
+            containerVariablesValuesCarousel["carousel_extended_version_img_2"],
+            containerVariablesValuesCarousel["carousel_extended_version_img_3"],
+            containerVariablesValuesCarousel["carousel_main_title_wording_1"],
+            containerVariablesValuesCarousel["carousel_main_title_wording_2"],
+            containerVariablesValuesCarousel["carousel_main_title_wording_3"],
+            containerVariablesValuesCarousel["carousel_main_subtitle_wording_1"],
+            containerVariablesValuesCarousel["carousel_main_subtitle_wording_2"],
+            containerVariablesValuesCarousel["carousel_main_subtitle_wording_3"],
+            containerVariablesValuesCarousel["carousel_button_wording_1"],
+            containerVariablesValuesCarousel["carousel_button_wording_2"],
+            containerVariablesValuesCarousel["carousel_button_wording_3"],
+            containerVariablesValuesCarousel["carousel_button_color_1"],
+            containerVariablesValuesCarousel["carousel_button_color_2"],
+            containerVariablesValuesCarousel["carousel_button_color_3"],
+            containerVariablesValuesCarousel["carousel_button_wording_color_1"],
+            containerVariablesValuesCarousel["carousel_button_wording_color_2"],
+            containerVariablesValuesCarousel["carousel_button_wording_color_3"],
+            containerVariablesValuesCarousel["carousel_arrows_color"],
+            containerVariablesValuesCarousel["display_carousel_circle_shape_indicators"],
+            containerVariablesValuesCarousel["display_carousel_fade_transition"]
           );
         }
       }
